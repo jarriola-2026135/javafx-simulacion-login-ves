@@ -4,10 +4,12 @@
  */
 package com.jeffersonarriola.controller;
 
+import com.jeffersonarriola.view.BienvenidaView;
 import com.jeffersonarriola.view.LoginView;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.swing.JOptionPane;
@@ -21,6 +23,7 @@ public class SceneManager {
    private Stage escenarioSecundario;
    private Scene escenaPrincipal;
    private static SceneManager instanciaSceneManager;
+   
    
    private SceneManager(){
        
@@ -43,6 +46,24 @@ public class SceneManager {
           }
    }
    
+   public void ventanaBienvenida(){
+       try{
+           this.escenarioSecundario = new Stage();
+           this.escenarioSecundario.initStyle(StageStyle.TRANSPARENT);
+           this.escenarioPrincipal.initModality(Modality.APPLICATION_MODAL);
+           BienvenidaView bienvenida = new BienvenidaView();
+           this.escenarioSecundario.setScene(escenaPrincipal);
+           this.escenarioSecundario.sizeToScene();
+           this.escenarioSecundario.showAndWait();
+       }catch (NullPointerException objetoNulo){
+                JOptionPane.showMessageDialog(null, "Error de objeto Nulo: Ventana Login");
+                objetoNulo.printStackTrace();
+       }catch(Exception errorPadre) {
+                JOptionPane.showMessageDialog(null, "Error padre: Ventana Login");
+                errorPadre.printStackTrace();
+       }
+
+   }
    public void cambiarEscena(Pane panel, int ancho, int alto){
        try {
            escenaPrincipal = new Scene(panel, ancho, alto);
