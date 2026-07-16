@@ -15,17 +15,20 @@ import javax.swing.JOptionPane;
  */
 public class LoginController {
     private final LoginView LOGIN_VIEW;
-    private Stage escenarioPrincipal = SceneManager.getInstanciaSceneManager().getEscenarioPrincipal();
-    private double ejeX = 0;
-    private double ejeY = 0;
-    private AuthSistema authSistema = new AuthSistema();
+    private double ejeX=0;
+    private double ejeY=0;
     
     public LoginController (LoginView loginView){
         this.LOGIN_VIEW = loginView;
         construirAcciones();
     }
+    private Stage escenarioPrincipal = SceneManager
+                             .getInstanciaSceneManager()
+                             .getEscenarioPrincipal();
     
-   
+     private AuthSistema authSistema = new AuthSistema();
+    
+    
     public void iniciarSesion(){
         String nombreUsuario = this.LOGIN_VIEW.getTxtNombreUsuario().getText().trim();
         String clave = this.LOGIN_VIEW.getPwdClave().getText().trim();
@@ -36,23 +39,24 @@ public class LoginController {
             
         }else if( clave.isEmpty() ){
             this.LOGIN_VIEW.getTxtNombreUsuario().getStyleClass().remove("empty");
-            this.LOGIN_VIEW.getStyleClass().add("empty");
+            this.LOGIN_VIEW.getPwdClave().getStyleClass().add("empty");
             JOptionPane.showMessageDialog(null, "NO DEJES VACIO LA CONTRASEÑA")
 ;        }else{
             this.LOGIN_VIEW.getPwdClave().getStyleClass().remove("empty");
             //METODO LOGIN
             Usuario usuario = authSistema.login(nombreUsuario, clave);
+            
             if( usuario == null){
                 JOptionPane.showMessageDialog(null, "VERIFICA TUS CREDENCIALES"); 
             }else{
-                JOptionPane.showMessageDialog(null, "HOLAS");
+                JOptionPane.showMessageDialog(null, "Bienvenido Jefferson Alexander Arriola");
             }
         }
     }
     public void construirAcciones(){
         this.LOGIN_VIEW.getBtnIniciarSesion().setOnMouseClicked(
                 (evento)->{
-                    System.exit(0);
+                    iniciarSesion();
                 }
         );
         

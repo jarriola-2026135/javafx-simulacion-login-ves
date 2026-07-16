@@ -50,11 +50,13 @@ public class SceneManager {
        try{
            this.escenarioSecundario = new Stage();
            this.escenarioSecundario.initStyle(StageStyle.TRANSPARENT);
-           this.escenarioPrincipal.initModality(Modality.APPLICATION_MODAL);
+           this.escenarioSecundario.initModality(Modality.APPLICATION_MODAL);
            BienvenidaView bienvenida = new BienvenidaView();
+           this.escenaPrincipal = new Scene(bienvenida, 15, 25);
            this.escenarioSecundario.setScene(escenaPrincipal);
            this.escenarioSecundario.sizeToScene();
            this.escenarioSecundario.showAndWait();
+           
        }catch (NullPointerException objetoNulo){
                 JOptionPane.showMessageDialog(null, "Error de objeto Nulo: Ventana Login");
                 objetoNulo.printStackTrace();

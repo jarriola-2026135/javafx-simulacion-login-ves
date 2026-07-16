@@ -4,7 +4,6 @@
  */
 package com.jeffersonarriola.view;
 
-import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
 /**
@@ -14,11 +13,13 @@ import javafx.scene.layout.VBox;
 public class BienvenidaView extends VBox{
     private static BienvenidaView instanciaBienvenidaView;
 
-    public BienvenidaView (){
-        
-    }
-    public static BienvenidaView getInstanciaBienvenidaView(){
+    public static BienvenidaView getInstanciaBienvenidaView() {
+        //IF es null
         return instanciaBienvenidaView;
+    }
+
+    public static void setInstanciaBienvenidaView(BienvenidaView instanciaBienvenidaView) {
+        BienvenidaView.instanciaBienvenidaView = instanciaBienvenidaView;
     }
    
     
